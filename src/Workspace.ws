@@ -1,0 +1,1 @@
+(Polynomial new initialize: #(1 2 3)) evaluate.(Polynomial new initialize: #(1 2 3 4)) graphFrom: -10 graphTo: 10.(Polynomial new initialize: #(1 2 3 4)) differentiate graphFrom: -10 graphTo: 10.
