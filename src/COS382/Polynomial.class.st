@@ -87,6 +87,21 @@ Polynomial >> evaluate: aNumber [
 	^ result
 ]
 
+{ #category : #'building - graph' }
+Polynomial >> graphFrom: from graphTo: to [
+	"make a graph of the polynomial"
+			
+	| diag |
+	diag := GETDiagramBuilder new.
+	diag lineDiagram
+		height: 200;
+   		models: (from to: to);
+		y: [ :x | self evaluate: x ];
+		color: Color black;
+		regularAxisAsInteger.
+	diag open.
+]
+
 { #category : #accessing }
 Polynomial >> initialize [
 	super initialize.

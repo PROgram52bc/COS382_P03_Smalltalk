@@ -42,7 +42,6 @@ PolynomialTest >> testEvaluate [
 { #category : #tests }
 PolynomialTest >> testSum [
 	"test the sum method"
-
 			
 	| a b |
 	a := Polynomial new.
