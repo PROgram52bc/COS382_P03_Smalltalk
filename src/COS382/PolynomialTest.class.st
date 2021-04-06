@@ -17,6 +17,29 @@ PolynomialTest >> testCoefficient [
 ]
 
 { #category : #tests }
+PolynomialTest >> testDifferentiate [
+	| a |
+	a := Polynomial new initialize: #(2 4 3).
+	self assert: (a differentiate asArray) equals: #(4 6);
+		assert: (a differentiate differentiate asArray) equals: #(6);
+		assert: (a differentiate differentiate differentiate asArray) equals: #(0).
+	
+]
+
+{ #category : #tests }
+PolynomialTest >> testEvaluate [
+	"testing evaluate method"			
+	| a |
+	a := Polynomial new initialize: #(2 4 3).
+	self assert: (a evaluate: 1) equals: (2+4+3);
+		assert: (a evaluate: 2) equals: (2+(4*2)+(3*4));
+		assert: (a evaluate: 3) equals: (2+(4*3)+(3*9));
+		assert: (a evaluate: 4) equals: (2+(4*4)+(3*16));
+		assert: (a evaluate: 5) equals: (2+(4*5)+(3*25));
+		assert: (a evaluate: -2) equals: (2-(4*2)+(3*4)).
+]
+
+{ #category : #tests }
 PolynomialTest >> testSum [
 	"test the sum method"
 

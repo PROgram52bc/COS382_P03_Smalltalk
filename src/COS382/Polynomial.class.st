@@ -52,6 +52,41 @@ Polynomial >> degree [
 	^ coefficient size - 1
 ]
 
+{ #category : #'math functions' }
+Polynomial >> differentiate [
+	"take the derivative of the polynomial"
+	| newPolyArray |
+	(self degree = 0) ifTrue: [ newPolyArray := #(0) ]
+	ifFalse: [ newPolyArray := Array new: (self degree).
+		1 to: self degree do: [ :power |
+			newPolyArray at: power
+			put: (self coefficient: power) * power 
+	]].
+	^ self class new initialize: newPolyArray
+]
+
+{ #category : #'public access' }
+Polynomial >> evaluate [
+	"interactively evaluate the polynomial"
+			
+	| aNumber |
+	aNumber := UIManager default request: 
+			'Where would you like this polynomial to be evaluated at?'.
+	^ self evaluate: (aNumber asNumber)
+]
+
+{ #category : #'public access' }
+Polynomial >> evaluate: aNumber [
+	"evaluate the polynomial at aNumber"	
+			
+	| result coeff |
+	result := 0.
+	0 to: self degree do: [ :power | 
+		coeff := self coefficient: power.
+		result := result + (coeff * (aNumber raisedTo: power)) ].
+	^ result
+]
+
 { #category : #accessing }
 Polynomial >> initialize [
 	super initialize.
